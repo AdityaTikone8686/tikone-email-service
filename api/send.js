@@ -59,11 +59,15 @@ export default async function handler(req, res) {
 
     // Send email and wait for completion
     const info = await transporter.sendMail({
-      from: `"Tikone Cricket Gurukul" <${GMAIL_USER}>`,
-      to,
-      subject,
-      text
-    });
+  from: {
+    name: "Tikone Cricket Gurukul Admissions",
+    address: GMAIL_USER
+  },
+  to,
+  subject,
+  text,
+  replyTo: GMAIL_USER
+});
 
     await transporter.close();
 
